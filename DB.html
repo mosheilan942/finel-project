@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python GUI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        
+        .form-group button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python GUI</h1>
+        <form action="#" method="post" id="pythonForm">
+            <div class="form-group">
+                <label for="db_name">Database Name:</label>
+                <input type="text" id="db_name" name="db_name" required>
+            </div>
+            <div class="form-group">
+                <label for="db_user">Database User:</label>
+                <input type="text" id="db_user" name="db_user" required>
+            </div>
+            <div class="form-group">
+                <label for="db_password">Database Password:</label>
+                <input type="password" id="db_password" name="db_password" required>
+            </div>
+            <div class="form-group">
+                <label for="db_host">Database Host:</label>
+                <input type="text" id="db_host" name="db_host" required>
+            </div>
+            <div class="form-group">
+                <label for="db_port">Database Port:</label>
+                <input type="text" id="db_port" name="db_port" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Connect to MySQL</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("pythonForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            
+            // Get form data
+            var db_name = document.getElementById("db_name").value;
+            var db_user = document.getElementById("db_user").value;
+            var db_password = document.getElementById("db_password").value;
+            var db_host = document.getElementById("db_host").value;
+            var db_port = document.getElementById("db_port").value;
+            
+            // Send form data to the server (you need to implement the server-side code)
+            // You can use JavaScript AJAX or any other method to send the data to the server
+            // Example using Fetch API:
+            fetch("/connect", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    db_name: db_name,
+                    db_user: db_user,
+                    db_password: db_password,
+                    db_host: db_host,
+                    db_port: db_port
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Connection successful");
+                    // Redirect or show success message
+                } else {
+                    console.error("Connection failed");
+                    // Show error message
+                }
+            })
+            .catch(error => {
+                console.error("Connection failed:", error);
+                // Show error message
+            });
+        });
+    </script>
+</body>
+</html>

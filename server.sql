@@ -1,0 +1,30 @@
+-- Active: 1687857238323@@127.0.0.1@3306
+
+
+
+
+SHOW DATABASES;
+
+
+CREATE DATABASE app;
+
+USE app;
+
+CREATE TABLE users(
+    user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(50),
+    email VARCHAR(40)
+
+);
+
+ALTER TABLE users AUTO_INCREMENT=100;
+
+-- DROP TABLE users;
+
+
+SHOW DATABASES;
+
+SELECT * from users;
+
+INSERT INTO users;
+
